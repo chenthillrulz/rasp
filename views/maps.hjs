@@ -42,6 +42,7 @@
     <!--</select>-->
 <!--</div>-->
 <div id="map"></div>
+<div id="to_location" value="{{to_location}}"></div>
 <script>
     function initMap() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -60,13 +61,14 @@
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 //        var selectedMode = document.getElementById('mode').value;
+        console.log(document.getElementById('to_location').getAttribute('value'));
         directionsService.route({
             origin: {lat: 12.933393, lng: 77.692182},  // Haight.
-            destination: "Koramangala 5th block, Bangalore",  // Ocean Beach.
+            destination: document.getElementById('to_location').getAttribute('value'),  // Ocean Beach.
             // Note that Javascript allows us to access the constant
             // using square brackets and a string value as its
             // "property."
-            travelMode: google.maps.TravelMode["DRIVING"]
+            travelMode: google.maps.TravelMode["DRIVING", "TRANSIT"]
         }, function(response, status) {
             if (status == 'OK') {
                 directionsDisplay.setDirections(response);
