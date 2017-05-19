@@ -1,0 +1,105 @@
+<link rel='stylesheet' href='/stylesheets/weather.css' />
+
+<script>
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var result = JSON.parse(this.responseText);
+			document.getElementById('location').innerHTML = result['name']; 
+			document.getElementById('todayDate').innerHTML = new Date().toJSON().slice(0,10).replace(/-/g,'/');;
+			document.getElementById('temperature').innerHTML =(parseInt(result['main']['temp']) - 273) + ' C';
+			document.getElementById('weather-desc').innerHTML = result['weather'][0]['description'];
+			document.getElementById('humidity').innerHTML = result['main']['humidity']+'% humidity';
+			document.getElementById('maxTemp').innerHTML = 'MaxTemp : ' + (parseInt(result['main']['temp_max']) - 273);
+			document.getElementById('minTemp').innerHTML = 'MinTemp : ' + (parseInt(result['main']['temp_min']) - 273 - 10);		
+			var imgsrc = "/images/"+result['weather'][0]['main'];
+			document.getElementById('weather-img').src = imgsrc;
+		}
+	  };
+	  xhttp.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip=560037,in&APPID=2fb5996b45a267a7dd391c5b229215d8", true);
+	  xhttp.send();
+      var nextDate;
+	  var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var result = JSON.parse(this.responseText);
+			var weatherData =getWeatherData(result);
+			var weatherForecastData =getWeatherForecastData(result);			
+		}
+	  };
+	  xhttp.open("GET", "http://api.openweathermap.org/data/2.5/forecast?q=560037,in&apikey=2fb5996b45a267a7dd391c5b229215d8", true);
+	  xhttp.send();
+	  
+	  function getWeatherData(result){	
+	  	var data=result.list;
+	  	var today=data[0].dt_txt.split(' ')[0];
+	  	var weatherData=[];
+	  	for(var i=0;i<data.length;i++){
+	  	   if(data[i].dt_txt.startsWith(today)){
+	  			weatherData.push(data[i]);
+	  		}
+	  		else{
+	  		nextDate=data[i].dt_txt;
+	  		 break;
+	  	 }
+	  	}
+	  	return weatherData;
+	  		
+	  }
+	  
+	   function getWeatherForecastData(result){	 
+	  	var data=result.list;	  	
+	  	var temp;
+	  	var weatherData=[];
+	  	for(var i=0;i<data.length;i++){
+	  
+	  	   if(data[i].dt_txt==nextDate){
+	  			weatherData.push(data[i]);
+	  			temp=nextDate.split(' ')[0];
+	  		}
+	  		else if(temp!=undefined&&data[i].dt_txt.split(' ')[0]!=temp){
+	  		      weatherData.push(data[i]);
+	  			temp=data[i].dt_txt.split(' ')[0];	  		
+	  	 }
+	  	}
+	  	return weatherData;
+	  		
+	  }
+</script>
+
+<div class="widget-block">
+<!-- MAIN AREA -->
+  <div class="img-area">
+	 <div class="img-area-mask"></div>
+	 <img src="/images/paris-sm.jpg" alt="">
+	 <div class="img-area-front">
+		<h5 class="location" id="location"></h5>
+
+		<p class="today" id="todayDate"></p>
+
+		<div class="weather-desc" id="weather-desc"></div>
+
+		<ul class="weather-block-info">
+		   <li>
+			  <p class="temperature" id="temperature"></p>
+		   </li>
+		   <li>
+		   	<img id="weather-img" />
+		   </li>
+		   <li>
+			  <ul class="weather-params">
+				 <li><i id="humidity"></i></li>
+				  <li><i id="maxTemp"></i></li>
+				 <li><i id="minTemp"></i></li>
+				
+				 <li></li>
+			  </ul>
+		   </li>
+		</ul>
+	 </div>
+  </div>
+
+<ul class="week-forecast" id="week-forecast">
+ 
+</ul>
+</div>

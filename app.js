@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var maps = require('./routes/maps');
-var movies = require('./routes/movies');
+ var weather = require('./routes/weather');
+ var news=require('./routes/news');
 
 var app = express();
 
@@ -27,8 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use ('/directions', maps);
-app.use ('/movies', movies);
-
+ app.use ('/weather', weather);
+ app.use('/news',news);
 app.get('/hello', function (req, res) {
     res.send('Hello World')
 })
