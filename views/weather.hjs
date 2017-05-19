@@ -7,7 +7,7 @@
 			var result = JSON.parse(this.responseText);
 			document.getElementById('location').innerHTML = result['name']; 
 			document.getElementById('todayDate').innerHTML = new Date().toJSON().slice(0,10).replace(/-/g,'/');;
-			document.getElementById('temperature').innerHTML =(parseInt(result['main']['temp']) - 273) + ' C';
+			document.getElementById('temperature').innerHTML = parseInt(result['main']['temp']) - 273;
 			document.getElementById('weather-desc').innerHTML = result['weather'][0]['description'];
 			document.getElementById('humidity').innerHTML = result['main']['humidity']+'% humidity';
 			document.getElementById('maxTemp').innerHTML = 'MaxTemp : ' + (parseInt(result['main']['temp_max']) - 273);

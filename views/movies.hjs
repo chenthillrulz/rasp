@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link rel='stylesheet' href='/stylesheets/movies.css' />
+
+<head>
+    <title>Testing themoviedb.js</title>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body class="container">
+    <div>
+        <h1>Now playing Movies</h1>
+        <div id="nowPlaying">
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+function getNowPlaying() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var result = JSON.parse(this.responseText);
+            setMovieList(result.results, "nowPlaying");
+        }
+    };
+    xhttp.open("GET", "https://api.themoviedb.org/3/movie/now_playing?api_key=30ebd2f54790381016773fe137deb336&language=en-ta&page=1&region=IN", true);
+    xhttp.send();
+}
+
+function setMovieList(movies, id) {
+    $("#" + id).text("");
+    for (var i = 0; i < movies.length; i++) {
+    console.log(movies[i])
+        var cardTag = document.createElement('div')
+        cardTag.className = "movie-card";
+        $(cardTag).append('<img class="movie-img" src= http://image.tmdb.org/t/p/w185/' + movies[i].poster_path + '></img>');
+        $(cardTag).append('<h4>' + movies[i].title + '</h4>');
+        $(cardTag).append('<span>' + movies[i].vote_average + '</span><br><br>');
+        $(cardTag).append('<span>' + movies[i].overview + '</span>');
+        $("#" + id).append(cardTag);
+    }
+}
+getNowPlaying();
+</script>
+
+</html>

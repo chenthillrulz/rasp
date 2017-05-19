@@ -8,7 +8,11 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var maps = require('./routes/maps');
-var movies = require('./routes/movies');
+ var weather = require('./routes/weather');
+ var news=require('./routes/news');
+ var movies = require('./routes/movies');
+ var traffic = require('./routes/traffic');
+
 var app = express();
 
 // view engine setup
@@ -26,6 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use ('/directions', maps);
+app.use ('/weather', weather);
+app.use('/news',news);
+app.use ('/movies', movies);
+app.use ('/traffic', traffic);
 app.get('/hello', function (req, res) {
     res.send('Hello World')
 })
