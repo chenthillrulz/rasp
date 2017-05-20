@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<link rel='stylesheet' href='/stylesheets/movies.css' />
+<style type="text/css">
+.now-playing {}
+
+.movie-card {
+    background: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    height: 500px;
+    margin: 1rem;
+    position: relative;
+    width: 500px;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+</style>
 
 <head>
     <title>Testing themoviedb.js</title>
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
-<body class="container">
+<body>
     <div>
         <h1>Now playing Movies</h1>
         <div id="nowPlaying">
@@ -18,31 +31,32 @@
 </body>
 <script type="text/javascript">
 function getNowPlaying() {
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var result = JSON.parse(this.responseText);
-            setMovieList(result.results, "nowPlaying");
+            console.log(result.results)
+            setNowPlaying(result.results);
         }
     };
     xhttp.open("GET", "https://api.themoviedb.org/3/movie/now_playing?api_key=30ebd2f54790381016773fe137deb336&language=en-ta&page=1&region=IN", true);
     xhttp.send();
 }
 
-function setMovieList(movies, id) {
-    $("#" + id).text("");
+function setNowPlaying(movies) {
+    $("#nowPlaying").text("");
     for (var i = 0; i < movies.length; i++) {
-    console.log(movies[i])
         var cardTag = document.createElement('div')
         cardTag.className = "movie-card";
-        $(cardTag).append('<img class="movie-img" src= http://image.tmdb.org/t/p/w185/' + movies[i].poster_path + '></img>');
-        $(cardTag).append('<h4>' + movies[i].title + '</h4>');
-        $(cardTag).append('<span>' + movies[i].vote_average + '</span><br><br>');
-        $(cardTag).append('<span>' + movies[i].overview + '</span>');
-        $("#" + id).append(cardTag);
+        $(cardTag).append('<h2 >' + movies[i].title + '</h2>');
+        $(cardTag).append('<img src= http://image.tmdb.org/t/p/w185/' + movies[i].poster_path + '></img>');
+        $(cardTag).append('<div>' + movies[i].id + '</div>');
+        $(cardTag).append('<span class="glyphicons glyphicons-calendar"></span>');
+        $(cardTag).append('<div>' + movies[i].vote_average + '</div>');
+        $("#nowPlaying").append(cardTag);
     }
 }
 getNowPlaying();
 </script>
-
 </html>
