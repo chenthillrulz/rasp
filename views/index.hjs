@@ -178,11 +178,11 @@ html,body {
     </div>-->
     <div class="slider" id="main-slider"><!-- outermost container element -->
 	<div class="slider-wrapper"><!-- innermost wrapper element -->
-		<img src="/images/Latest_Welcome.png" alt="First" class="slide" /><!-- slides -->
-		<img src="/images/KO1.png" alt="Second" class="slide" />
-		<img src="/images/KO2.png" alt="Third" class="slide" />
-		<img src="/images/KO3.png" alt="Fourth" class="slide" />
-		<img src="/images/KO4.png" alt="Fifth" class="slide" />			
+		<img src="/images/Welcome.png" alt="First" class="slide" /><!-- slides -->
+		<img src="/images/1.png" alt="Second" class="slide" />
+		<img src="/images/2.png" alt="Third" class="slide" />
+		<img src="/images/3.png" alt="Fourth" class="slide" />
+		<img src="/images/4.png" alt="Fifth" class="slide" />			
 	</div>
 </div>
  <script>
