@@ -78,10 +78,10 @@
 	  	for(var i=0;i<data.length;i++){
 	  
 	  	   if(data[i].dt_txt==nextDate){
-	  			weatherData.push(data[i]);
+	  			weatherData.push(data[i]);	  			
 	  			temp=nextDate.split(' ')[0];
 	  		}
-	  		else if(temp!=undefined&&data[i].dt_txt.split(' ')[0]!=temp){
+	  		else if(temp!=undefined&&data[i].dt_txt.split(' ')[0]!=temp&&data[i].dt_txt.split(' ')[1]=='12:00:00'){
 	  		      weatherData.push(data[i]);
 	  			temp=data[i].dt_txt.split(' ')[0];	  		
 	  	 }
