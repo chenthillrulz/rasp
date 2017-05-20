@@ -5,7 +5,22 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+    <div class="animation-element">
+    	<img src="/images/Welcome.png" class="welcomeImg" />
+    </div>
+
+    <div class="animation-slide" id="fade-in">
+    	<img src="/images/Knock out-01.png" />
+    	<img src="/images/Knock out-02.png" />
+    	<img src="/images/Knock out-03.png" />
+    	<img src="/images/Knock out-05.png" />
+    	<img src="/images/Knock out-04.png" />
+    </div>
   </body>
+
+  <script>
+  	window.document.onload = function(e){ 
+  		
+  	}
+  </script>
 </html>

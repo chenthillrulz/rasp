@@ -10,7 +10,9 @@ router.get('/', function(req, res, next) {
         location = "Bangalore";
     }
 
-    res.render('weather',location);
+
+    res.render('weather',{location: location});
+
 });
 
-module.exports = router;
+module.exports = router; 
