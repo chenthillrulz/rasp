@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,18 +6,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    
     <!--<div class="animation-element">
     	<img src="/images/Welcome.png" class="welcomeImg" />
-<<<<<<< HEAD
+    </div>	
     </div>-->
     <div class="slider" id="main-slider"><!-- outermost container element -->
 	<div class="slider-wrapper"><!-- innermost wrapper element -->
-		<img src="/images/Welcome.png" alt="First" class="slide" /><!-- slides -->
-		<img src="/images/Knockout-01.png" alt="Second" class="slide" />
-		<img src="/images/Knockout-02.png" alt="Third" class="slide" />
-		<img src="/images/Knockout-03.png" alt="Fourth" class="slide" />
-		<img src="/images/Knockout-04.png" alt="Fifth" class="slide" />
-		<img src="/images/Knockout-05.png" alt="Sixth" class="slide" />		
+		<img src="/images/Latest_Welcome.png" alt="First" class="slide" /><!-- slides -->
+		<img src="/images/KO1.png" alt="Second" class="slide" />
+		<img src="/images/KO2.png" alt="Third" class="slide" />
+		<img src="/images/KO3.png" alt="Fourth" class="slide" />
+		<img src="/images/KO4.png" alt="Fifth" class="slide" />			
 	</div>
 </div>
  <script>
@@ -88,7 +89,18 @@
 })();
  
  </script>	
+  </body>
+</html>
 =======
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="animation-element">
+    	<img src="/images/Welcome.png" class="welcomeImg" />
     </div>
 
     <div class="animation-slide" id="fade-in">
@@ -98,7 +110,6 @@
     	<img src="/images/Knock out-05.png" />
     	<img src="/images/Knock out-04.png" />
     </div>
->>>>>>> branch 'master' of http://SANSR@dcharish01.eur.ad.sag:9090/CPAL/rasp.git
   </body>
 
   <script>
@@ -107,3 +118,4 @@
   	}
   </script>
 </html>
+>>>>>>> 67b30e323400e81f525f699961fe1c8ad4970472

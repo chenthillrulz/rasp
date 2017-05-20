@@ -1,0 +1,320 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Travel modes in directions</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 90%;
+            width: 50%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+        .duration{
+            color: #f7941d;
+        }
+        .direction-info{
+            font-size: 24px;
+            display: block;
+        }
+        .route-info{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>To {{to_location}}</h1>
+<div id="direction-info" class="direction-info">    
+</div>
+<div id="map" class="map-block">    
+</div>
+<div id="to_location" value="{{to_location}}"></div>
+<script>
+    function initMap() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var trafficLayer = new google.maps.TrafficLayer();
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: {lat: 12.93, lng: 77.69}
+        });
+        directionsDisplay.setMap(map);
+        trafficLayer.setMap(map);
+
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+//        var selectedMode = document.getElementById('mode').value;
+        console.log(document.getElementById('to_location').getAttribute('value'));
+        directionsService.route({
+            origin: {lat: 12.933393, lng: 77.692182},  // Haight.
+            destination: document.getElementById('to_location').getAttribute('value'),  // Ocean Beach.
+            // Note that Javascript allows us to access the constant
+            // using square brackets and a string value as its
+            // "property."
+            travelMode: google.maps.TravelMode["DRIVING", "TRANSIT"],
+	    durationInTraffic: true,
+	     // provideRouteAlternatives: true,
+            drivingOptions: {
+            departureTime: new Date(/* now, or future date */),
+            trafficModel: 'pessimistic'
+          },	
+        }, function(response, status) {
+            if (status == 'OK') {
+                setRoutes(response.routes);                
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+
+    function setRoutes(routes){        
+        document.getElementById('direction-info').value ='';
+        var routesInfo = document.createElement('div');
+        for(var i =0;i<routes.length;i++){            
+            var routeInfo = document.createElement('div');
+            routeInfo.className = 'route-info'
+            var durationTag = document.createElement('span');
+            durationTag.className = "duration";
+            durationTag.innerHTML = routes[i].legs[0].duration.text;
+            var distanceTag = document.createElement('span')
+            distanceTag.className = "distance";
+            distanceTag.innerHTML = " ("+routes[i].legs[0].distance.text+")"; 
+            routeInfo.appendChild(durationTag);
+            routeInfo.appendChild(distanceTag);
+            routesInfo.appendChild(routeInfo);
+        }
+        document.getElementById('direction-info').appendChild(routesInfo);
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfMo52DGsgOF4Fj4fobHf-d8iPocGqFr8&callback=initMap">
+</script>
+</body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Travel modes in directions</title>
+    <style>
+        .mirror{
+            background: black;
+            font-family: 'Roboto','sans-serif';
+        }
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 80%;
+            /*width: 50%;*/
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+        .duration{
+            color: #f7941d;
+        }
+        .direction-info{
+            font-size: 24px;
+            display: block;
+            color: white;
+        }
+        .route-info{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body class="mirror">
+<h1 class="direction-info">From Software AG,Bangalore to {{to_location}}</h1>
+<div id="direction-info" class="direction-info">    
+</div>
+<div id="map" class="map-block">    
+</div>
+<div id="to_location" value="{{to_location}}"></div>
+<script>
+    function initMap() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var trafficLayer = new google.maps.TrafficLayer();
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: {lat: 12.93, lng: 77.69},
+             styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+        });
+        directionsDisplay.setMap(map);
+        trafficLayer.setMap(map);
+
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+//        var selectedMode = document.getElementById('mode').value;
+        console.log(document.getElementById('to_location').getAttribute('value'));
+        directionsService.route({
+            origin: {lat: 12.933393, lng: 77.692182},  // Haight.
+            destination: document.getElementById('to_location').getAttribute('value'),  // Ocean Beach.
+            // Note that Javascript allows us to access the constant
+            // using square brackets and a string value as its
+            // "property."
+            travelMode: google.maps.TravelMode["DRIVING", "TRANSIT"],
+	    durationInTraffic: true,
+	     // provideRouteAlternatives: true,
+            drivingOptions: {
+            departureTime: new Date(/* now, or future date */),
+            trafficModel: 'pessimistic',
+          },	
+        }, function(response, status) {
+            if (status == 'OK') {
+                setRoutes(response.routes);                
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+
+    function setRoutes(routes){        
+        document.getElementById('direction-info').value ='';
+        var routesInfo = document.createElement('div');
+        for(var i =0;i<routes.length;i++){            
+            var routeInfo = document.createElement('div');
+            routeInfo.className = 'route-info'
+            var durationTag = document.createElement('span');
+            durationTag.className = "duration";
+            durationTag.innerHTML = routes[i].legs[0].duration.text;
+            var distanceTag = document.createElement('span')
+            distanceTag.className = "distance";
+            distanceTag.innerHTML = " ("+routes[i].legs[0].distance.text+")"; 
+            routeInfo.appendChild(durationTag);
+            routeInfo.appendChild(distanceTag);
+            routesInfo.appendChild(routeInfo);
+        }
+        document.getElementById('direction-info').appendChild(routesInfo);
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfMo52DGsgOF4Fj4fobHf-d8iPocGqFr8&callback=initMap">
+</script>
+</body>
+>>>>>>> 67b30e323400e81f525f699961fe1c8ad4970472
+</html>

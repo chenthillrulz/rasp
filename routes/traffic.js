@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     var to_location;
     if (req.query.to != undefined) {
-        to_location = req.query.to + ",Bangalore";
+        to_location = req.query.to + ", Bangalore";
     } else {
         to_location = "Kempegowda international airport, Bangalore";
     }

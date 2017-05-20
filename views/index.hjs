@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ title }}</title>
+    <title>Casper</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    
+       
     <!--<div class="animation-element">
     	<img src="/images/Welcome.png" class="welcomeImg" />
     </div>	

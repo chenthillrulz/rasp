@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Travel modes in directions</title>
     <style>
+        .mirror{
+            background: black;
+            font-family: 'Roboto','sans-serif';
+        }
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
         #map {
             height: 90%;
             width: 50%;
+            height: 80%;
+            /*width: 50%;*/
         }
         /* Optional: Makes the sample page fill the window. */
         html, body {
@@ -36,6 +43,7 @@
         .direction-info{
             font-size: 24px;
             display: block;
+            color: white;
         }
         .route-info{
             padding: 10px;
@@ -44,6 +52,8 @@
 </head>
 <body>
 <h1>To {{to_location}}</h1>
+<body class="mirror">
+<h1 class="direction-info">From Software AG,Bangalore to {{to_location}}</h1>
 <div id="direction-info" class="direction-info">    
 </div>
 <div id="map" class="map-block">    
@@ -57,6 +67,87 @@
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
             center: {lat: 12.93, lng: 77.69}
+            center: {lat: 12.93, lng: 77.69},
+             styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
         });
         directionsDisplay.setMap(map);
         trafficLayer.setMap(map);
@@ -79,6 +170,7 @@
             drivingOptions: {
             departureTime: new Date(/* now, or future date */),
             trafficModel: 'pessimistic'
+            trafficModel: 'pessimistic',
           },	
         }, function(response, status) {
             if (status == 'OK') {
