@@ -37,7 +37,6 @@ function setMovieList(movieDetails, id) {
     console.log(movieDetails);
     $("#" + id).text("");
         var cardTag = document.createElement('div')
-        // cardTag.style.backgroundImage="http://image.tmdb.org/t/p/w185/" +movieDetails.poster_path
         $(cardTag).append('<h1>' + movieDetails.title + '</h1>');
         $(cardTag).append('<img class="movie-img movie-img-size" src= http://image.tmdb.org/t/p/w185/' +movieDetails.poster_path + '></img><br />');
         $(cardTag).append('<h3>' + movieDetails.overview + '</h3>');

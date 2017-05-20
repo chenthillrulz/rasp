@@ -66,7 +66,6 @@
         var trafficLayer = new google.maps.TrafficLayer();
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
-            center: {lat: 12.93, lng: 77.69}
             center: {lat: 12.93, lng: 77.69},
              styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -170,7 +169,6 @@
             drivingOptions: {
             departureTime: new Date(/* now, or future date */),
             trafficModel: 'pessimistic'
-            trafficModel: 'pessimistic',
           },	
         }, function(response, status) {
             if (status == 'OK') {
