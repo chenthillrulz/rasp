@@ -14,9 +14,7 @@
          * element that contains the map. */
         #map {
             height: 90%;
-            width: 50%;
-            height: 80%;
-            /*width: 50%;*/
+            width: 90%;
         }
         /* Optional: Makes the sample page fill the window. */
         html, body {
@@ -52,7 +50,7 @@
 </head>
 <body>
 <h1>To {{to_location}}</h1>
-<body class="mirror">
+<body class="mirror" style="padding-left: 100px">
 <h1 class="direction-info">From Software AG,Bangalore to {{to_location}}</h1>
 <div id="direction-info" class="direction-info">    
 </div>
