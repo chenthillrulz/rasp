@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <style type="text/css">
-  	//movies style
+ //movies style
   	.mirror {
     background: black;
     color: #ddd;
     font-family: 'Roboto', 'sans-serif';
+    height: 1366px;
+    width: 100%;
 }
 #nowPlaying{
     padding-top: 50px;
@@ -254,7 +256,7 @@ body {
 	width: 768px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	background: rgba(255,255,255,0.2);
+	/*background: rgba(255,255,255,0.2);*/
 	margin: auto;
 }
 .img-area {
