@@ -11,7 +11,6 @@
 
 <body class="container mirror1">
     <div>
-        <h1 id="movieName"></h1>
         <div id="nowPlaying">
         </div>
     </div>
@@ -30,9 +29,9 @@ function getNowPlaying() {
 }
 
 function setMovieList(movies, id) {
+    console.log(movies)
     $("#" + id).text("");
     for (var i = 0; i < movies.length; i++) {
-        // console.log(movies[i])
         var cardTag = document.createElement('div')
         cardTag.className = "movie-card";
         $(cardTag).append('<img class="movie-img" src= http://image.tmdb.org/t/p/w185/' + movies[i].poster_path + '></img>');

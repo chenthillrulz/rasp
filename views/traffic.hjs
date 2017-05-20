@@ -13,6 +13,8 @@
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
         #map {
+            height: 90%;
+            width: 50%;
             height: 80%;
             /*width: 50%;*/
         }
@@ -48,6 +50,8 @@
         }
     </style>
 </head>
+<body>
+<h1>To {{to_location}}</h1>
 <body class="mirror">
 <h1 class="direction-info">From Software AG,Bangalore to {{to_location}}</h1>
 <div id="direction-info" class="direction-info">    
@@ -62,6 +66,7 @@
         var trafficLayer = new google.maps.TrafficLayer();
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
+            center: {lat: 12.93, lng: 77.69}
             center: {lat: 12.93, lng: 77.69},
              styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -164,6 +169,7 @@
 	     // provideRouteAlternatives: true,
             drivingOptions: {
             departureTime: new Date(/* now, or future date */),
+            trafficModel: 'pessimistic'
             trafficModel: 'pessimistic',
           },	
         }, function(response, status) {

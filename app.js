@@ -14,7 +14,7 @@ var maps = require('./routes/maps');
  var traffic = require('./routes/traffic');
  var upcomingMovies = require('./routes/upcomingMovies');
  var findMovie = require('./routes/findMovie');
-
+ 
 var app = express();
 
 // view engine setup
@@ -36,7 +36,7 @@ app.use ('/weather', weather);
 app.use('/news',news);
 app.use ('/movies', movies);
 app.use ('/traffic', traffic);
-app.use ('/upcomingMovies', upcomingMovies);
+app.use ('/upcoming_movies', upcomingMovies);
 app.use ('/findMovie', findMovie);
 app.get('/hello', function (req, res) {
     res.send('Hello World')
