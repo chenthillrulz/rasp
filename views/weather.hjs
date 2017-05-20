@@ -7,7 +7,8 @@
 	  xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var result = JSON.parse(this.responseText);
-			document.getElementById('location').innerHTML = result['name']; 
+			console.log(result)
+			document.getElementById('placename').innerHTML = result['name']; 
 			document.getElementById('todayDate').innerHTML = new Date().toJSON().slice(0,10).replace(/-/g,'/');;
 			document.getElementById('temperature').innerHTML = parseInt(result['main']['temp']) - 273;
 			document.getElementById('weather-desc').innerHTML = result['weather'][0]['description'];
@@ -29,7 +30,24 @@
 		if (this.readyState == 4 && this.status == 200) {
 			var result = JSON.parse(this.responseText);
 			var weatherData =getWeatherData(result);
-			var weatherForecastData =getWeatherForecastData(result);				
+			var weatherForecastData =getWeatherForecastData(result);
+			var width = document.getElementById('week-forecast').offsetWidth;
+
+			var childWidth = width / weatherForecastData.length;
+			console.log(weatherForecastData)
+			for ( var i=0; i<weatherForecastData.length; i++ ) {
+				var child = document.createElement('li');
+				child.style.width = childWidth+'px';
+				var temp = parseInt(weatherForecastData[i]['main']['temp']) - 273;
+				var unqiueID = 'test'
+				var imagesrc = "/images/"+weatherForecastData[i]['weather'][0]['main']+'.svg';
+
+				child.innerHTML = '<div><p>'+ weatherForecastData[i]['dt_txt'].split(' ')[0] +
+				'</p><p><span class="temp">'+ temp + '</span><span style="padding-left:14px;font-weight:bold">C' +
+				'</span></p><img src="' + imagesrc +'"></img>'+
+				'<p>'+weatherForecastData[i]['weather'][0]['description']+'</p></div>';
+				document.getElementById('week-forecast').append(child);
+			}		
 		}
 	  };
 	  var furl ="http://api.openweathermap.org/data/2.5/forecast?q="+loc+",in&APPID=2fb5996b45a267a7dd391c5b229215d8";
@@ -78,9 +96,9 @@
 <!-- MAIN AREA -->
   <div class="img-area">
 	 <div class="img-area-mask"></div>
-	 <img src="/images/paris-sm.jpg" alt="">
+	 <img src="/images/weatherbg.jpg" alt="">
 	 <div class="img-area-front">
-		<h5 class="location" id="location"></h5>
+		<h5 class="location" id="placename"></h5>
 
 		<p class="today" id="todayDate"></p>
 
@@ -106,9 +124,13 @@
 	 </div>
   </div>
 
-<ul class="week-forecast" id="week-forecast">
- 
-</ul>
+  	<div class="forecast-text">
+  		Weather Forecast For Next Few Days
+  	</div>
+
+	<ul class="week-forecast" id="week-forecast">
+	 	
+	</ul>
 </div>
 </body>
 </html>
