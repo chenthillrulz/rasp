@@ -3,14 +3,14 @@ var router = express.Router();
 
 /* GET map direction listing. */
 router.get('/', function(req, res, next) {
-//    var to_location;
-//    if (req.query.to != undefined) {
-//        to_location = req.query.to + ",Bangalore";
-//    } else {
-//        to_location = "Salem, TamilNadu";
-//    }
+    var location;
+    if (req.query.location != undefined) {
+     location = req.query.location;
+    } else {
+        location = "Bangalore";
+    }
 
-    res.render('weather');
+    res.render('weather',location);
 });
 
 module.exports = router;
