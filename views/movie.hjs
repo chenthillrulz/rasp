@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
-<body class="container mirror">
+<body class="container mirror1">
     <div>
-        <h1>Now playing Movies</h1>
+        <h1 id="movieName"></h1>
         <div id="nowPlaying">
         </div>
     </div>
@@ -36,8 +36,8 @@ function setMovieList(movies, id) {
         var cardTag = document.createElement('div')
         cardTag.className = "movie-card";
         $(cardTag).append('<img class="movie-img" src= http://image.tmdb.org/t/p/w185/' + movies[i].poster_path + '></img>');
-        $(cardTag).append('<h2>' + movies[i].title + '</h2>');
-        $(cardTag).append('<div>' + movies[i].overview + '</div>');
+        $(cardTag).append('<h4>' + movies[i].title + '</h4>');
+        $(cardTag).append('<span>' + movies[i].overview + '</span>');
         $("#" + id).append(cardTag);
     }
 }

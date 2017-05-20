@@ -1,14 +1,22 @@
+.mirror {
+    background: black;
+    color: #ddd;
+    font-family: 'Roboto', 'sans-serif';
+}
+#nowPlaying{
+    padding-top: 50px;
+}
 .movie-card {
-    background: #fff;
+    background: black;
     border-radius: 2px;
     display: inline-block;
     height: 250px;
     margin: 1rem;
     position: relative;
     width: 500px;
-    padding: 10px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    color: #ddd;
 }
 
 .movie-img {

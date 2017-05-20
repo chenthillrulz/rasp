@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET movie details. */
+/* GET upcoming movie details. */
 router.get('/', function(req, res, next) {
-	res.render('movies');
+	res.render('upcomingMovies');
 });
 
 module.exports = router;

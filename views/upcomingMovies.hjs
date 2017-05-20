@@ -3,7 +3,7 @@
 <link rel='stylesheet' href='/stylesheets/movies.css' />
 
 <head>
-    <title>Now Playing</title>
+    <title>Upcoming Movie </title>
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -11,7 +11,7 @@
 
 <body class="container mirror">
     <div>
-        <h1>Now playing Movies</h1>
+        <h1>Upcoming Movies</h1>
         <div id="nowPlaying">
         </div>
     </div>
@@ -25,7 +25,7 @@ function getNowPlaying() {
             setMovieList(result.results, "nowPlaying");
         }
     };
-    xhttp.open("GET", "https://api.themoviedb.org/3/movie/now_playing?api_key=30ebd2f54790381016773fe137deb336&language=en-ta&page=1&region=IN", true);
+    xhttp.open("GET", "https://api.themoviedb.org/3/movie/upcoming?api_key=30ebd2f54790381016773fe137deb336&language=en-ta&page=1&region=IN", true);
     xhttp.send();
 }
 

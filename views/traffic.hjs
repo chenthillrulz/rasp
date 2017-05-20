@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Travel modes in directions</title>
     <style>
+        .mirror{
+            background: black;
+            font-family: 'Roboto','sans-serif';
+        }
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
         #map {
-            height: 90%;
-            width: 50%;
+            height: 80%;
+            /*width: 50%;*/
         }
         /* Optional: Makes the sample page fill the window. */
         html, body {
@@ -36,14 +41,15 @@
         .direction-info{
             font-size: 24px;
             display: block;
+            color: white;
         }
         .route-info{
             padding: 10px;
         }
     </style>
 </head>
-<body>
-<h1>To {{to_location}}</h1>
+<body class="mirror">
+<h1 class="direction-info"><div>From Software AG,Bangalore to {{to_location}}</div></h1>
 <div id="direction-info" class="direction-info">    
 </div>
 <div id="map" class="map-block">    
