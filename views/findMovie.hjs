@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Find Movie </title>
+    <link rel='stylesheet' href='/stylesheets/movies.css' />
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body class="container mirror">
+    <div>
+        <div id="movieDetails">
+            <div id="movieName" value={{movieName}}>            
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+function getNowPlaying() {
+    var movieName = document.getElementById('movieName').getAttribute('value');
+    console.log(movieName);
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var result = JSON.parse(this.responseText);
+            setMovieList(result.results[0], "movieDetails");
+        }
+    };
+    xhttp.open("GET", "https://api.themoviedb.org/3/search/movie?api_key=30ebd2f54790381016773fe137deb336&query="+movieName, true);
+    xhttp.send();
+}
+
+function setMovieList(movieDetails, id) {
+    console.log(movieDetails);
+    $("#" + id).text("");
+        var cardTag = document.createElement('div')
+        // cardTag.style.backgroundImage="http://image.tmdb.org/t/p/w185/" +movieDetails.poster_path
+        $(cardTag).append('<h1>' + movieDetails.title + '</h1>');
+        $(cardTag).append('<img class="movie-img movie-img-size" src= http://image.tmdb.org/t/p/w185/' +movieDetails.poster_path + '></img><br />');
+        $(cardTag).append('<h3>' + movieDetails.overview + '</h3>');
+        $("#" + id).append(cardTag);
+}
+getNowPlaying();
+</script>
+
+</html>

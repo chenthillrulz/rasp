@@ -22,7 +22,7 @@ function getNowPlaying() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var result = JSON.parse(this.responseText);
-            setMovieList(result.results, "nowPlaying");
+            setMovieList(result, "nowPlaying");
         }
     };
     xhttp.open("GET", "https://api.themoviedb.org/3/movie/upcoming?api_key=30ebd2f54790381016773fe137deb336&language=en-ta&page=1&region=IN", true);

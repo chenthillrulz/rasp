@@ -13,6 +13,7 @@ var maps = require('./routes/maps');
  var movies = require('./routes/movies');
  var traffic = require('./routes/traffic');
  var upcomingMovies = require('./routes/upcomingMovies');
+ var findMovie = require('./routes/findMovie');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/news',news);
 app.use ('/movies', movies);
 app.use ('/traffic', traffic);
 app.use ('/upcomingMovies', upcomingMovies);
+app.use ('/findMovie', findMovie);
 app.get('/hello', function (req, res) {
     res.send('Hello World')
 })

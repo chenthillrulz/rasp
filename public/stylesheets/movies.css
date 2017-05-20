@@ -35,3 +35,7 @@
     box-sizing: border-box;
     padding: 10px 16px 16px 16px;
 }
+.movie-img-size{
+    height: 350px;
+    width: 200px;
+}
