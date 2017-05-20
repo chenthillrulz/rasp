@@ -1,7 +1,7 @@
 <html>
 <link rel='stylesheet' href='/stylesheets/weather.css' />
-<body>
-<div id='location' value={{location}}></div>
+<body class="mirror">
+<div id='location' value={{location}} ></div>
 <script>
 	var xhttp = new XMLHttpRequest();
 	  xhttp.onreadystatechange = function() {
@@ -91,7 +91,7 @@
 	  }
 </script>
 
-<div class="widget-block">
+<div class="widget-block mirror">
 
 <!-- MAIN AREA -->
   <div class="img-area">
